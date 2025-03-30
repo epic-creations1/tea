@@ -21,7 +21,7 @@
         }
         
         function playSound() {
-            let audio = new Audio("https://www.fesliyanstudios.com/play-mp3/438"); // Free notification sound
+            let audio = new Audio("tea_ready_sound.mp3"); // Restore original sound file
             audio.play();
         }
         
@@ -49,6 +49,11 @@
 <body>
     <h1>Tea Reminder</h1>
     <p>Enter the time in seconds until your tea is ready:</p>
+    <input type="number" id="timer" placeholder="Time in seconds">
+    <button onclick="startTimer()">Set Reminder</button>
+</body>
+</html>
+
     <input type="number" id="timer" placeholder="Time in seconds">
     <button onclick="startTimer()">Set Reminder</button>
 </body>
