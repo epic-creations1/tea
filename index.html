@@ -4,70 +4,52 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tea Reminder</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            text-align: center;
-            margin: 50px;
-        }
-        button {
-            padding: 10px 20px;
-            margin: 10px;
-            cursor: pointer;
-        }
-    </style>
-</head>
-<body>
-
-    <h1>Welcome to Tea Reminder!</h1>
-
-    <p>Have you put your tea in your cup?</p>
-    <button onclick="teaInCup(true)">Yes</button>
-    <button onclick="teaInCup(false)">No</button>
-
-    <div id="reminderSection" style="display: none;">
-        <p>Do you want a reminder?</p>
-        <button onclick="setReminder(true)">Yes</button>
-        <button onclick="setReminder(false)">No</button>
-    </div>
-
-    <div id="timerSection" style="display: none;">
-        <p>How long is your timer (in seconds)?</p>
-        <input type="number" id="timerInput">
-        <button onclick="startTimer()">Set Timer</button>
-    </div>
-
-    <p id="message"></p>
-
     <script>
-        function teaInCup(hasTea) {
-            if (hasTea) {
-                document.getElementById("reminderSection").style.display = "block";
-            } else {
-                let madeTea = confirm("Have you even made tea?");
-                if (madeTea) {
-                    alert("Then put it into your cup!");
+        function startTimer() {
+            let timer = parseInt(document.getElementById("timer").value);
+            if (isNaN(timer) || timer <= 0) {
+                alert("Please enter a valid number of seconds!");
+                return;
+            }
+            
+            alert("Timer set for " + timer + " seconds. You will get a notification when your tea is ready!");
+            
+            setTimeout(() => {
+                playSound();
+                sendNotification();
+            }, timer * 1000);
+        }
+        
+        function playSound() {
+            let audio = new Audio("https://www.fesliyanstudios.com/play-mp3/438"); // Free notification sound
+            audio.play();
+        }
+        
+        function sendNotification() {
+            if ("Notification" in window) {
+                if (Notification.permission === "granted") {
+                    new Notification("Tea Reminder", {
+                        body: "Your tea is ready! Don't forget to drink it!",
+                        icon: "https://cdn-icons-png.flaticon.com/512/1995/1995525.png"
+                    });
+                } else if (Notification.permission !== "denied") {
+                    Notification.requestPermission().then(permission => {
+                        if (permission === "granted") {
+                            new Notification("Tea Reminder", {
+                                body: "Your tea is ready! Don't forget to drink it!",
+                                icon: "https://cdn-icons-png.flaticon.com/512/1995/1995525.png"
+                            });
+                        }
+                    });
                 }
             }
         }
-
-        function setReminder(wantsReminder) {
-            if (wantsReminder) {
-                document.getElementById("timerSection").style.display = "block";
-            } else {
-                document.getElementById("message").innerText = "Okay, have a nice day!";
-            }
-        }
-
-        function startTimer() {
-            let timer = document.getElementById("timerInput").value;
-            document.getElementById("message").innerText = `Your timer is set for ${timer} seconds.`;
-
-            setTimeout(() => {
-                alert("Your tea is ready! Don't forget to drink it!");
-            }, timer * 1000);
-        }
     </script>
-
+</head>
+<body>
+    <h1>Tea Reminder</h1>
+    <p>Enter the time in seconds until your tea is ready:</p>
+    <input type="number" id="timer" placeholder="Time in seconds">
+    <button onclick="startTimer()">Set Reminder</button>
 </body>
 </html>
