@@ -5,42 +5,32 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tea Reminder</title>
     <script>
-        function startTimer() {
-            let timer = parseInt(document.getElementById("timer").value);
-            if (isNaN(timer) || timer <= 0) {
-                alert("Please enter a valid number of seconds!");
-                return;
-            }
-            
-            alert("Timer set for " + timer + " seconds. You will get a notification when your tea is ready!");
-            
-            setTimeout(() => {
-                playSound();
-                sendNotification();
-            }, timer * 1000);
-        }
-        
-        function playSound() {
-            let audio = new Audio("tea_ready_sound.mp3"); // Restore original sound file
-            audio.play();
-        }
-        
-        function sendNotification() {
-            if ("Notification" in window) {
-                if (Notification.permission === "granted") {
-                    new Notification("Tea Reminder", {
-                        body: "Your tea is ready! Don't forget to drink it!",
-                        icon: "https://cdn-icons-png.flaticon.com/512/1995/1995525.png"
-                    });
-                } else if (Notification.permission !== "denied") {
-                    Notification.requestPermission().then(permission => {
-                        if (permission === "granted") {
-                            new Notification("Tea Reminder", {
-                                body: "Your tea is ready! Don't forget to drink it!",
-                                icon: "https://cdn-icons-png.flaticon.com/512/1995/1995525.png"
-                            });
-                        }
-                    });
+        function startReminder() {
+            let tea = prompt("Have you put your tea in your cup? (yes/no)").toLowerCase();
+
+            if (tea === "yes") {
+                let reminder = prompt("Do you want a reminder? (yes/no)").toLowerCase();
+                
+                if (reminder === "yes") {
+                    let timer = parseInt(prompt("How long is your timer (in seconds)?"));
+                    
+                    if (isNaN(timer) || timer <= 0) {
+                        alert("Please enter a valid number of seconds!");
+                        return;
+                    }
+
+                    alert("Your timer is set for " + timer + " seconds.");
+                    
+                    setTimeout(() => {
+                        alert("Your tea is ready! Don't forget to drink it!");
+                    }, timer * 1000);
+                } else {
+                    alert("Okay, have a nice day!");
+                }
+            } else if (tea === "no") {
+                let madeTea = prompt("Have you even made tea? (yes/no)").toLowerCase();
+                if (madeTea === "yes") {
+                    alert("Then put it into your cup!");
                 }
             }
         }
@@ -48,9 +38,8 @@
 </head>
 <body>
     <h1>Tea Reminder</h1>
-    <p>Enter the time in seconds until your tea is ready:</p>
-    <input type="number" id="timer" placeholder="Time in seconds">
-    <button onclick="startTimer()">Set Reminder</button>
+    <button onclick="startReminder()">Start</button>
 </body>
 </html>
+
 
