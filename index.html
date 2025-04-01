@@ -5,11 +5,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tea Reminder</title>
     <script>
+        function getUserResponse(question) {
+            let response = prompt(question);
+            if (response === null || response.trim() === "") {
+                return "yes"; // Default to "yes" if empty or OK is pressed
+            }
+            return response.toLowerCase();
+        }
+
         function startReminder() {
-            let tea = prompt("Have you put your tea in your cup? (yes/no)").toLowerCase();
+            let tea = getUserResponse("Have you put your tea in your cup? (yes/no)");
 
             if (tea === "yes") {
-                let reminder = prompt("Do you want a reminder? (yes/no)").toLowerCase();
+                let reminder = getUserResponse("Do you want a reminder? (yes/no)");
                 
                 if (reminder === "yes" || reminder === "ok") {
                     let timer = parseInt(prompt("How long is your timer (in seconds)?"));
@@ -28,7 +36,7 @@
                     alert("Okay, have a nice day!");
                 }
             } else if (tea === "no") {
-                let madeTea = prompt("Have you even made tea? (yes/no)").toLowerCase();
+                let madeTea = getUserResponse("Have you even made tea? (yes/no)");
                 if (madeTea === "yes") {
                     alert("Then put it into your cup!");
                 }
