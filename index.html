@@ -6,12 +6,12 @@
     <title>Tea Reminder</title>
     <script>
         function startReminder() {
-            let tea = prompt("Have you put your tea in your cup? (yes/no)").toLowerCase();
+            alert("Have you put your tea in your cup? (yes/no)").toLowerCase();
 
             if (tea === "yes") {
-                let reminder = prompt("Do you want a reminder? (yes/no)").toLowerCase();
+                alert ("Do you want a reminder?;
                 
-                if (reminder === "yes") {
+                if (reminder === "ok" or "yes) {
                     let timer = parseInt(prompt("How long is your timer (in seconds)?"));
                     
                     if (isNaN(timer) || timer <= 0) {
