@@ -17,23 +17,23 @@
             let tea = getUserResponse("Have you put your tea in your cup? (yes/no)");
 
             if (tea === "yes") {
-                let reminder = getUserResponse("Dby any chance do you want a reminder? (yes/no)");
+                let reminder = getUserResponse("By any chance do you want a reminder? (yes/no) 🧐");
                 
                 if (reminder === "yes" || reminder === "ok") {
-                    let timer = parseInt(prompt("How long is your timer (in seconds)?"));
+                    let timer = parseInt(prompt("😎How long is your timer (in seconds)?"));
                     
                     if (isNaN(timer) || timer <= 0) {
-                        alert("Please enter a valid number of seconds!");
+                        alert("Please enter a valid number of seconds!🤬😡");
                         return;
                     }
 
-                    alert("Your timer is set for " + timer + " seconds.");
+                    alert("😁Your timer is set for " + timer + " seconds.");
                     
                     setTimeout(() => {
-                        alert("Your tea is ready! Don't forget to drink it!");
+                        alert("Your tea is ready! Don't forget to drink it!🙋");
                     }, timer * 1000);
                 } else {
-                    alert("Okay, have a nice day!");
+                    alert("Okay, have a nice day!🙋");
                 }
             } else if (tea === "no") {
                 let madeTea = getUserResponse("Have you even made tea? (yes/no)");
