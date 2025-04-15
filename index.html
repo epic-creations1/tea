@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tea Reminder</title>
+    <title>Tea Reminder app</title>
     <script>
         function getUserResponse(question) {
             let response = prompt(question);
@@ -14,7 +14,7 @@
         }
 
         function startReminder() {
-            let tea = getUserResponse("Have you put your tea in your cup? (yes/no)");
+            let tea = getUserResponse("Have you put your tea in your cup? (yes/no) or (ok/cancel");
 
             if (tea === "yes") {
                 let reminder = getUserResponse("By any chance do you want a reminder? (yes/no) 🧐");
@@ -46,6 +46,6 @@
 </head>
 <body>
     <h1>Tea Reminder</h1>
-    <button onclick="start()">Start Reminder</button>
+    <button onclick="start()">Start😎</button>
 </body>
 </html>
