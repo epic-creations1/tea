@@ -3,49 +3,32 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tea Reminder app</title>
+    <title>Tea Reminder App</title>
     <script>
         function getUserResponse(question) {
             let response = prompt(question);
-            if (response === null || response.trim() === "") {
-                return "yes"; // Default to "yes" if empty or OK is pressed
-            }
-            return response.toLowerCase();
+            return response;
         }
 
         function startReminder() {
-            let tea = getUserResponse("Have you put your tea in your cup? (yes/no) or (ok/cancel");
+            let tea = getUserResponse("Have you put your tea in your cup? (yes/no)");
 
             if (tea === "yes") {
-                let reminder = getUserResponse("By any chance do you want a reminder? (yes/no) 🧐");
-                
-                if (reminder === "yes" || reminder === "ok") {
-                    let timer = parseInt(prompt("😎How long is your timer (in seconds)?"));
-                    
-                    if (isNaN(timer) || timer <= 0) {
-                        alert("Please enter a valid number of seconds!🤬😡");
-                        return;
-                    }
-
-                    alert("😁Your timer is set for " + timer + " seconds.");
-                    
-                    setTimeout(() => {
-                        alert("Your tea is ready! Don't forget to drink it or since you may not have poured go pour it now!🙋");
-                    }, timer * 1000);
+                let reminder = getUserResponse("By any chance, do you want a reminder? (yes/no) 🧐");
+                if (reminder === "yes") {
+                    alert("Reminder: Drink your tea in 5 minutes!");
+                    // You can add a delay here for the reminder, like using setTimeout
                 } else {
-                    alert("Okay, have a nice day!🙋");
+                    alert("No reminder set, but enjoy your tea!");
                 }
-            } else if (tea === "no") {
-                let madeTea = getUserResponse("Have you even made tea? (yes/no)");
-                if (madeTea === "yes") {
-                    alert("Then put it into your cup!");
-                }
+            } else {
+                alert("Don't forget to put your tea in your cup!");
             }
         }
     </script>
 </head>
 <body>
     <h1>Tea Reminder</h1>
-    <button onclick="start()">Start😎</button>
+    <button onclick="startReminder()">Start Reminder</button>
 </body>
 </html>
